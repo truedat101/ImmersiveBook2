@@ -46,6 +46,10 @@ TODO
 - Meta WebXR example for Quest: https://github.com/meta-quest/webxr-first-steps
 - AFrame examples: https://glitch.com/~aframe-basic-guide
 
+## Further Reading
+
+- https://developers.meta.com/horizon/documentation/web/webxr-bp/
+
 ## Inspirations
 
 

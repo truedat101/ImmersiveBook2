@@ -13,19 +13,23 @@ import {
 	SphereGeometry,
 	VRButton,
 	initEngine,
+	AssetManager,
+	THREE,
 } from 'elixr';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 		// url: 'https://elysian.fun/assets/gltf/props.gltf',
 const asset1 = 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/refs/heads/main/2.0/BoomBox/glTF/BoomBox.gltf';
 const asset2 = 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/refs/heads/main/2.0/AnimatedCube/glTF/AnimatedCube.gltf';
 const asset3 = 'https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/refs/heads/main/Models/BoxTextured/glTF-Embedded/BoxTextured.gltf';
+const asset4 = 'assets/scene.gltf';
 
 const assets = {
 	props: {
 		url: asset3,
 		type: 'GLTF',
 		callback: (gltf) => {
-			console.log(gltf);
+			console.log("loaded: ", gltf);
 		},
 	},
 };
@@ -79,7 +83,14 @@ initEngine(
 	const ambientLight = new AmbientLight(new Color(0xffffff), 1);
 	world.scene.add(ambientLight);
 
-	world.scene.add(assets);
+	// XXX world.scene.add(assets);
+	// world.scene.add(new THREE.AmbientLight(0xffffff, 0.5));
+	const gltfLoader = new GLTFLoader();
+  	const url1 = asset4;
+	gltfLoader.load(url1, (gltf) => {
+		const root = gltf.scene;
+		world.scene.add(root);
+	});
 	// Add directional light
 	const directionalLight = new DirectionalLight(new Color(0xffffff), 0.5);
 	directionalLight.position.set(0, 1, 0);
