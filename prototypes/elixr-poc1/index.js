@@ -24,7 +24,9 @@ import { PCDLoader } from 'three/addons/loaders/PCDLoader.js';
 const asset4 = 'assets/scene.gltf';
 const asset3 = 'assets/scene.gltf';
 const asset5 = 'assets/BookRoomV4ImageTest2.glb'
+const asset6 = 'assets/BookRoomV4ImageTest3.glb'
 const sound1 = 'assets/frog_in_the_tunnel_MASTR004_intro.ogg';
+const gif1	 = 'assets/2-3068368949-Time-lapse-of-our-first-christmas-tree-at-home-in-the.gif';
 
 var modelroot;
 const assets = {
@@ -90,6 +92,28 @@ initEngine(
 	const ambientLight = new AmbientLight(new Color(0xffffff), 1);
 	world.scene.add(ambientLight);
 
+	// Create a texture loader so we can load our image file
+	var loader = new THREE.TextureLoader();
+
+	// Load an image file into a custom material
+	var material = new THREE.MeshLambertMaterial({
+		map: loader.load(gif1)
+	});
+
+	// TODO: Implement this as an animated png
+	/*
+	// create a plane geometry for the image with a width of 10
+	// and a height that preserves the image's aspect ratio
+	var geometry = new THREE.PlaneGeometry(10, 10*.75);
+
+	// combine our image geometry and material into a mesh
+	var mesh = new THREE.Mesh(geometry, material);
+
+	// set the position of the image mesh in the x,y,z dimensions
+	mesh.position.set(0,0,0)
+	world.scene.add(mesh);
+	*/
+
 	// XXX world.scene.add(assets);
 	// world.scene.add(new THREE.AmbientLight(0xffffff, 0.5));
 	const gltfLoader = new GLTFLoader();
@@ -154,6 +178,7 @@ function fadeModel(model, opacity, rate, increment) {
 		}
 	}
 	console.log(model);
+	
 	/*
 	model.materials[0].transparent = true;
 	setTimeout(function() {
