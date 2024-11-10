@@ -45,13 +45,13 @@ TODO
 - Elixr Prototype: https://elixrjs.io/index.html
 - Meta WebXR example for Quest: https://github.com/meta-quest/webxr-first-steps
 - AFrame examples: https://glitch.com/~aframe-basic-guide
-
+- Content: https://sketchfab.com/3d-models/cartoon-lowpoly-small-city-free-pack-edd1c604e1e045a0a2a552ddd9a293e6
+- 
 ## Further Reading
 
 - https://developers.meta.com/horizon/documentation/web/webxr-bp/
+- https://threejs.org/manual/#en
 
 ## Inspirations
 
-
 - AR.js prototype: https://ar-js-org.github.io/AR.js-Docs/
-- min
