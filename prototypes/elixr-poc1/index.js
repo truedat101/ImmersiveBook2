@@ -23,6 +23,7 @@ import { PCDLoader } from 'three/addons/loaders/PCDLoader.js';
 		// url: 'https://elysian.fun/assets/gltf/props.gltf',
 const asset4 = 'assets/scene.gltf';
 const asset3 = 'assets/scene.gltf';
+const asset5 = 'assets/BookRoomV4ImageTest2.glb'
 const sound1 = 'assets/frog_in_the_tunnel_MASTR004_intro.ogg';
 
 var modelroot;
@@ -92,7 +93,7 @@ initEngine(
 	// XXX world.scene.add(assets);
 	// world.scene.add(new THREE.AmbientLight(0xffffff, 0.5));
 	const gltfLoader = new GLTFLoader();
-  	const url1 = asset4;
+  	const url1 = asset5;
 	gltfLoader.load(url1, (gltf) => {
 		modelroot = gltf.scene;
 
