@@ -22,7 +22,9 @@ import { PCDLoader } from 'three/addons/loaders/PCDLoader.js';
 
 		// url: 'https://elysian.fun/assets/gltf/props.gltf',
 const asset4 = 'assets/scene.gltf';
-const asset3 = 'assets/cartoon_lowpoly_small_city_free_pack/scene.gltf';
+const asset3 = 'assets/scene.gltf';
+const sound1 = 'assets/frog_in_the_tunnel_MASTR004_intro.ogg';
+
 var modelroot;
 const assets = {
 	props: {
@@ -117,6 +119,17 @@ initEngine(
 	world.camera.position.set(0, 0, 10);
 	console.log(world.camera.position);
 	globalThis.world = world;
+
+	// load up ambient audio
+	// AUDIO
+    var audioLoader = new THREE.AudioLoader();
+    var listener = new THREE.AudioListener();
+    var audio = new THREE.Audio(listener);
+    audioLoader.load(sound1, function(buffer) {
+        audio.setBuffer(buffer);
+        audio.setLoop(true);
+        audio.play();
+    });
 
 	const vrButton = document.getElementById('vr-button');
 	VRButton.convertToVRButton(vrButton, world.renderer);
