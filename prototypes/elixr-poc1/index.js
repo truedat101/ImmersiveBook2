@@ -173,6 +173,18 @@ initEngine(
 		*/
 	});
 
+	// // Load an image file into a custom material
+	// var material = new THREE.MeshLambertMaterial({
+	// 	map: textureLoader.load('https://s3.amazonaws.com/duhaime/blog/tsne-webgl/assets/cat.jpg')
+	// });
+	// // create a plane geometry for the image with a width of 10
+	// // and a height that preserves the image's aspect ratio
+	// var geometry = new THREE.PlaneGeometry(10, 10*.75);
+
+	// // combine our image geometry and material into a mesh
+	// var mesh = new THREE.Mesh(geometry, material);
+	// world.scene.add(mesh);
+
 	world.renderer.setSize(640, 480);
 
 	// Add directional light
