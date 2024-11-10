@@ -33,7 +33,7 @@ const pointcloudPly = 'assets/alley_10000.ply'
 const sound1 = 'assets/frog_in_the_tunnel_MASTR004_intro.ogg';
 const gif1	 = 'assets/2-3068368949-Time-lapse-of-our-first-christmas-tree-at-home-in-the.gif';
 
-var modelroot;
+var model;
 const assets = {
 	props: {
 		url: asset3,
@@ -98,11 +98,11 @@ initEngine(
 	world.scene.add(ambientLight);
 
 	// Create a texture loader so we can load our image file
-	var loader = new THREE.TextureLoader();
+	var textureLoader = new THREE.TextureLoader();
 
 	// Load an image file into a custom material
 	var material = new THREE.MeshLambertMaterial({
-		map: loader.load(gif1)
+		map: textureLoader.load(gif1)
 	});
 
 	// TODO: Implement this as an animated png
@@ -122,12 +122,43 @@ initEngine(
 	// XXX world.scene.add(assets);
 	// world.scene.add(new THREE.AmbientLight(0xffffff, 0.5));
 	const gltfLoader = new GLTFLoader();
-  	const url1 = asset5;
-	gltfLoader.load(url1, (gltf) => {
-		modelroot = gltf.scene;
+  	// const url1 = asset5;
+	
+	// For Hogwarts dining hall
+	// const url1 = pointcloudDiningHall;
+	// const depthScale = 0.333;
+	// const scale = 30;
+	// const yShiftScale = 1 / 7;
+	// const zShiftScale = 0.7;
 
-		world.scene.add(modelroot);
-		// world.model.position.set(0,5.5,-2);
+	// For Alice in the Wonderland
+	// const url1 = pointcloudAlice;
+	// const depthScale = 0.333;
+	// const scale = 30;
+	// const yShiftScale = 0.1;
+	// const zShiftScale = 1.0;
+
+	// For Death Star
+	// const url1 = pointcloudDeathStar;
+	// const depthScale = 0.333;
+	// const scale = 30;
+	// const yShiftScale = -0.0;
+	// const zShiftScale = 1.0;
+	
+	// For Medieval battle in front of castle
+	const url1 = pointcloudCastleBattle;
+	const depthScale = 0.333;
+	const scale = 50;
+	const yShiftScale = 0.1;
+	const zShiftScale = 0.5;
+
+	gltfLoader.load(url1, (data) => {
+
+		model = data.scene;
+		model.scale.set(scale, scale, scale * depthScale);
+		model.position.set(0, scale * yShiftScale, scale * depthScale * zShiftScale);
+		model.rotateY(Math.PI);
+		world.scene.add(model);
 		// world.model.material.opacity(0.5);
 		// Attempting
 		/*
@@ -140,6 +171,9 @@ initEngine(
 		}, 15000);
 		*/
 	});
+
+	world.renderer.setSize(640, 480);
+
 	// Add directional light
 	const directionalLight = new DirectionalLight(new Color(0xffffff), 0.5);
 	directionalLight.position.set(0, 1, 0);
