@@ -25,6 +25,11 @@ const asset4 = 'assets/scene.gltf';
 const asset3 = 'assets/scene.gltf';
 const asset5 = 'assets/BookRoomV4ImageTest2.glb'
 const asset6 = 'assets/BookRoomV4ImageTest3.glb'
+const pointcloudAlice = 'assets/alice.glb'
+const pointcloudDiningHall = 'assets/dining_hall.glb'
+const pointcloudDeathStar = 'assets/death_star.glb'
+const pointcloudCastleBattle = 'assets/castle_battle.glb'
+const pointcloudPly = 'assets/alley_10000.ply'
 const sound1 = 'assets/frog_in_the_tunnel_MASTR004_intro.ogg';
 const gif1	 = 'assets/2-3068368949-Time-lapse-of-our-first-christmas-tree-at-home-in-the.gif';
 
