@@ -46,31 +46,32 @@ const assets = {
 
 class ExampleSystem extends GameSystem {
 	init() {
-		const pmat = new PhysicsMaterial({ friction: 1, restitution: 1 });
-		const sphere = this.createRigidbody()
-			.add(new SphereCollider(1, false, pmat))
-			.add(
-				new Mesh(
-					new SphereGeometry(1, 32, 32),
-					new MeshStandardMaterial({ color: 0xff0000 }),
-				),
-			);
-		sphere.position.set(0, 5, 0);
-		sphere.updateTransform();
-		sphere.colliderVisible = true;
-		this.scene.add(sphere);
-		this.floor = this.createRigidbody({ type: RigidbodyType.Kinematic })
-			.add(new PlaneCollider(10, 10, false, pmat))
-			.add(
-				new Mesh(
-					new PlaneGeometry(10, 10),
-					new MeshStandardMaterial({ color: 0x00ff00 }),
-				),
-			);
-		this.floor.position.set(0, 0, 0);
-		// this.floor.position.set(0, -1, 0);
-		this.floor.rotateX(-Math.PI / 2);
-		this.floor.colliderVisible = true;
+		// const pmat = new PhysicsMaterial({ friction: 1, restitution: 1 });
+		// const sphere = this.createRigidbody()
+		// 	.add(new SphereCollider(1, false, pmat))
+		// 	.add(
+		// 		new Mesh(
+		// 			new SphereGeometry(1, 32, 32),
+		// 			new MeshStandardMaterial({ color: 0xff0000 }),
+		// 		),
+		// 	);
+		// sphere.position.set(0, 5, 0);
+		// sphere.updateTransform();
+		// sphere.colliderVisible = true;
+		// this.scene.add(sphere);
+
+		// this.floor = this.createRigidbody({ type: RigidbodyType.Kinematic })
+		// 	.add(new PlaneCollider(10, 10, false, pmat))
+		// 	.add(
+		// 		new Mesh(
+		// 			new PlaneGeometry(10, 10),
+		// 			new MeshStandardMaterial({ color: 0x00ff00 }),
+		// 		),
+		// 	);
+		// this.floor.position.set(0, 0, 0);
+		// // this.floor.position.set(0, -1, 0);
+		// this.floor.rotateX(-Math.PI / 2);
+		// this.floor.colliderVisible = true;
 	}
 
 	update(delta) {
