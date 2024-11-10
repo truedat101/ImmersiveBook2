@@ -19,6 +19,7 @@ import {
 } from 'elixr';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { PCDLoader } from 'three/addons/loaders/PCDLoader.js';
+import { PLYLoader } from 'three/examples/jsm/loaders/PLYLoader';
 
 		// url: 'https://elysian.fun/assets/gltf/props.gltf',
 const asset4 = 'assets/scene.gltf';
@@ -172,6 +173,14 @@ initEngine(
 		}, 15000);
 		*/
 	});
+
+	// const plyLoader = new PLYLoader();
+	// plyLoader.load(
+	// 	pointcloudPly,
+	// 	onload = (data) => {
+	// 		model = data.scene;
+	// 		world.scene.add(model);
+	// });
 
 	// // Load an image file into a custom material
 	// var material = new THREE.MeshLambertMaterial({
