@@ -19,16 +19,22 @@ import {
 } from 'elixr';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { PCDLoader } from 'three/addons/loaders/PCDLoader.js';
+import { PLYLoader } from 'three/examples/jsm/loaders/PLYLoader';
 
 		// url: 'https://elysian.fun/assets/gltf/props.gltf',
 const asset4 = 'assets/scene.gltf';
 const asset3 = 'assets/scene.gltf';
 const asset5 = 'assets/BookRoomV4ImageTest2.glb'
 const asset6 = 'assets/BookRoomV4ImageTest3.glb'
+const pointcloudAlice = 'assets/alice.glb'
+const pointcloudDiningHall = 'assets/dining_hall.glb'
+const pointcloudDeathStar = 'assets/death_star.glb'
+const pointcloudCastleBattle = 'assets/castle_battle.glb'
+const pointcloudPly = 'assets/alley_10000.ply'
 const sound1 = 'assets/frog_in_the_tunnel_MASTR004_intro.ogg';
 const gif1	 = 'assets/2-3068368949-Time-lapse-of-our-first-christmas-tree-at-home-in-the.gif';
 
-var modelroot;
+var model;
 const assets = {
 	props: {
 		url: asset3,
@@ -41,31 +47,32 @@ const assets = {
 
 class ExampleSystem extends GameSystem {
 	init() {
-		const pmat = new PhysicsMaterial({ friction: 1, restitution: 1 });
-		const sphere = this.createRigidbody()
-			.add(new SphereCollider(1, false, pmat))
-			.add(
-				new Mesh(
-					new SphereGeometry(1, 32, 32),
-					new MeshStandardMaterial({ color: 0xff0000 }),
-				),
-			);
-		sphere.position.set(0, 5, 0);
-		sphere.updateTransform();
-		sphere.colliderVisible = true;
-		this.scene.add(sphere);
-		this.floor = this.createRigidbody({ type: RigidbodyType.Kinematic })
-			.add(new PlaneCollider(10, 10, false, pmat))
-			.add(
-				new Mesh(
-					new PlaneGeometry(10, 10),
-					new MeshStandardMaterial({ color: 0x00ff00 }),
-				),
-			);
-		this.floor.position.set(0, 0, 0);
-		// this.floor.position.set(0, -1, 0);
-		this.floor.rotateX(-Math.PI / 2);
-		this.floor.colliderVisible = true;
+		// const pmat = new PhysicsMaterial({ friction: 1, restitution: 1 });
+		// const sphere = this.createRigidbody()
+		// 	.add(new SphereCollider(1, false, pmat))
+		// 	.add(
+		// 		new Mesh(
+		// 			new SphereGeometry(1, 32, 32),
+		// 			new MeshStandardMaterial({ color: 0xff0000 }),
+		// 		),
+		// 	);
+		// sphere.position.set(0, 5, 0);
+		// sphere.updateTransform();
+		// sphere.colliderVisible = true;
+		// this.scene.add(sphere);
+
+		// this.floor = this.createRigidbody({ type: RigidbodyType.Kinematic })
+		// 	.add(new PlaneCollider(10, 10, false, pmat))
+		// 	.add(
+		// 		new Mesh(
+		// 			new PlaneGeometry(10, 10),
+		// 			new MeshStandardMaterial({ color: 0x00ff00 }),
+		// 		),
+		// 	);
+		// this.floor.position.set(0, 0, 0);
+		// // this.floor.position.set(0, -1, 0);
+		// this.floor.rotateX(-Math.PI / 2);
+		// this.floor.colliderVisible = true;
 	}
 
 	update(delta) {
@@ -93,11 +100,11 @@ initEngine(
 	world.scene.add(ambientLight);
 
 	// Create a texture loader so we can load our image file
-	var loader = new THREE.TextureLoader();
+	var textureLoader = new THREE.TextureLoader();
 
 	// Load an image file into a custom material
 	var material = new THREE.MeshLambertMaterial({
-		map: loader.load(gif1)
+		map: textureLoader.load(gif1)
 	});
 
 	// TODO: Implement this as an animated png
@@ -117,12 +124,43 @@ initEngine(
 	// XXX world.scene.add(assets);
 	// world.scene.add(new THREE.AmbientLight(0xffffff, 0.5));
 	const gltfLoader = new GLTFLoader();
-  	const url1 = asset5;
-	gltfLoader.load(url1, (gltf) => {
-		modelroot = gltf.scene;
+  	// const url1 = asset5;
+	
+	// For Hogwarts dining hall
+	// const url1 = pointcloudDiningHall;
+	// const depthScale = 0.333;
+	// const scale = 30;
+	// const yShiftScale = 1 / 7;
+	// const zShiftScale = 0.7;
 
-		world.scene.add(modelroot);
-		// world.model.position.set(0,5.5,-2);
+	// For Alice in the Wonderland
+	// const url1 = pointcloudAlice;
+	// const depthScale = 0.333;
+	// const scale = 30;
+	// const yShiftScale = 0.1;
+	// const zShiftScale = 1.0;
+
+	// For Death Star
+	// const url1 = pointcloudDeathStar;
+	// const depthScale = 0.333;
+	// const scale = 30;
+	// const yShiftScale = -0.0;
+	// const zShiftScale = 1.0;
+	
+	// For Medieval battle in front of castle
+	const url1 = pointcloudCastleBattle;
+	const depthScale = 0.333;
+	const scale = 50;
+	const yShiftScale = 0.1;
+	const zShiftScale = 0.5;
+
+	gltfLoader.load(url1, (data) => {
+
+		model = data.scene;
+		model.scale.set(scale, scale, scale * depthScale);
+		model.position.set(0, scale * yShiftScale, scale * depthScale * zShiftScale);
+		model.rotateY(Math.PI);
+		world.scene.add(model);
 		// world.model.material.opacity(0.5);
 		// Attempting
 		/*
@@ -135,6 +173,29 @@ initEngine(
 		}, 15000);
 		*/
 	});
+
+	// const plyLoader = new PLYLoader();
+	// plyLoader.load(
+	// 	pointcloudPly,
+	// 	onload = (data) => {
+	// 		model = data.scene;
+	// 		world.scene.add(model);
+	// });
+
+	// // Load an image file into a custom material
+	// var material = new THREE.MeshLambertMaterial({
+	// 	map: textureLoader.load('https://s3.amazonaws.com/duhaime/blog/tsne-webgl/assets/cat.jpg')
+	// });
+	// // create a plane geometry for the image with a width of 10
+	// // and a height that preserves the image's aspect ratio
+	// var geometry = new THREE.PlaneGeometry(10, 10*.75);
+
+	// // combine our image geometry and material into a mesh
+	// var mesh = new THREE.Mesh(geometry, material);
+	// world.scene.add(mesh);
+
+	world.renderer.setSize(640, 480);
+
 	// Add directional light
 	const directionalLight = new DirectionalLight(new Color(0xffffff), 0.5);
 	directionalLight.position.set(0, 1, 0);
