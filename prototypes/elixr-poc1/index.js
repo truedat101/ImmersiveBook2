@@ -19,6 +19,9 @@ import {
 } from 'elixr';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { PCDLoader } from 'three/addons/loaders/PCDLoader.js';
+import { GUI } from './dat.gui.min.js';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+import Stats from 'three/examples/jsm/libs/stats.module'
 
 		// url: 'https://elysian.fun/assets/gltf/props.gltf',
 const asset4 = 'assets/scene.gltf';
@@ -75,6 +78,7 @@ class ExampleSystem extends GameSystem {
 		}
 		*/
 		// console.log(this.sphereRigidBody.parent.position.toArray());
+		
 	}
 }
 
@@ -129,9 +133,42 @@ initEngine(
     audioLoader.load(sound1, function(buffer) {
         audio.setBuffer(buffer);
         audio.setLoop(true);
+		console.log("about to play");
         audio.play();
     });
 
+	//
+	// Let us navigate with a keyboard
+	//
+	const controls = new OrbitControls(world.camera, world.renderer.domElement)
+	//controls.addEventListener('change', render)
+
+	const geometry = new THREE.BoxGeometry()
+	const material = new THREE.MeshBasicMaterial({
+		color: 0x00ff00,
+		wireframe: true,
+	})
+
+	const cube = new THREE.Mesh(geometry, material)
+	world.scene.add(cube)
+
+	const stats = Stats()
+	var footerdiv = document.getElementById('footer');
+	// footerdiv.appendChild(stats.dom)
+
+	const gui = new GUI()
+	const cubeFolder = gui.addFolder('Cube')
+	cubeFolder.add(cube.rotation, 'x', 0, Math.PI * 2)
+	cubeFolder.add(cube.rotation, 'y', 0, Math.PI * 2)
+	cubeFolder.add(cube.rotation, 'z', 0, Math.PI * 2)
+	cubeFolder.open()
+	const cameraFolder = gui.addFolder('Camera')
+	cameraFolder.add(world.camera.position, 'z', 0, 10)
+	cameraFolder.open()
+
+	//
+	// Last step, check that we are really in VR
+	//
 	const vrButton = document.getElementById('vr-button');
 	VRButton.convertToVRButton(vrButton, world.renderer);
 });

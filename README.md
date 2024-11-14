@@ -36,7 +36,7 @@ npm serve
 - WebXR (VR mode on WEB browser)
 - Python (backend/ML)
 
-### External AI/ML Tools
+### External AI/ML Tools Used for Research
 - Stable Diffusion (SDXL) (Image Generation)
 - A1111 WebUI (Pipeline/API for Stable Diffusion)
 - [ControlNet](https://github.com/lllyasviel/ControlNet) (Guided image generation on Stable Diffusion)
@@ -46,14 +46,49 @@ npm serve
 - OpenAI API (GPT-4o/4V) (Preprocessing of book/texts and Stable Diffusion's prompt generation)
 - [RunPod](https://www.runpod.io/) (cloud GPU server)
 
-## Code struecture
+## Code
 - src : the final source code
 - assets: a JSON file containing links to any static assets
 - pipeline: this is the generative AI pipeline in combination with the graphics pipeline
 - prototypes: these are early prototypes that may later be thrown out or kept for historical reasons
 
+### Install
+
+- node 16 is fine
+
+### Build
+
+The current design is WebXR base, so not really anything to build, but building helps if you wan to prep for cloud deployment.
+
+### Run
+
+For testing:
+
+npm run serve
+
+## Demo PoC1
+
+The goal for the hackathon was to show off this workflow:
+
+- A Reading Room, where a user can choose between 2-3 books
+- The books load a PDF
+- In "reader" mode, the user can read line by line from a real PDF
+- The reading can be simply showing the text flowing in space
+- as each line is read, a generative pipeline kicks off
+- the generative pipeline uses the sentence for a prompt into a stable diffusion endpoint.  This produces one image, which is used to feed to Dustr.  The point cloud format is taken as a .glb file
+- The glb is loaded into the scene and appears out the window.
+- Continue until the user puts the book away
+
+### Performance
+
+TODO
+
+### Live Demo
+
+TODO
 
 # Additional Information
+
 ## Attributions
 
 - Elixr Prototype: https://elixrjs.io/index.html
@@ -61,6 +96,7 @@ npm serve
 - AFrame examples: https://glitch.com/~aframe-basic-guide
 - Content: https://sketchfab.com/3d-models/cartoon-lowpoly-small-city-free-pack-edd1c604e1e045a0a2a552ddd9a293e6
 - sky.jpg from Basic Scene - A-Frame
+- dat.gui https://github.com/dataarts/dat.gui
 
 ## Further Reading
 
