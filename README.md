@@ -4,6 +4,8 @@ This is the **Immersive Book 2.0** project, an Immerse The Bay 2024 team project
 
 Original project idea is described [here](https://qiita.com/truedata_iotone/items/e73aa5dc98a9fba46a60#book20---a-rethinking-of-books-in-xr)
 
+Devpost from the hackathon is here: https://devpost.com/software/immersivebook2-0
+
 ## Team
 - David Kordsmeier
 - Kazuki Yoda
