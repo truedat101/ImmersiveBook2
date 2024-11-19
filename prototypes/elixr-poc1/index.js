@@ -134,7 +134,7 @@ initEngine(
         audio.setBuffer(buffer);
         audio.setLoop(true);
 		console.log("about to play");
-        audio.play();
+        //audio.play();
     });
 
 	//
