@@ -109,5 +109,9 @@ TODO
 
 - AR.js prototype: https://ar-js-org.github.io/AR.js-Docs/
 
+## Related Work
+
+- BookXRms from MIT Reality Hack 2025:  https://devpost.com/software/bookxrms
+
 ## License
 MIT/X
