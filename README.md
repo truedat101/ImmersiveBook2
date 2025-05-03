@@ -6,6 +6,8 @@ Original project idea is described [here](https://qiita.com/truedata_iotone/item
 
 Devpost from the hackathon is here: https://devpost.com/software/immersivebook2-0
 
+<img width="1364" alt="Image" src="https://github.com/user-attachments/assets/58d15674-b917-4496-91e6-ba27620d376b" />
+
 ## Team
 - David Kordsmeier
 - Kazuki Yoda
@@ -67,6 +69,10 @@ The current design is WebXR base, so not really anything to build, but building 
 For testing:
 
 npm run serve
+
+Point your browser to: https://localhost:8081/
+
+You will need to accept the exception.
 
 ## Demo PoC1
 

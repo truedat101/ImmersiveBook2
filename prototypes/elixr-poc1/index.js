@@ -27,12 +27,13 @@ import Stats from 'three/examples/jsm/libs/stats.module'
 const asset4 = 'assets/scene.gltf';
 const asset3 = 'assets/scene.gltf';
 const asset5 = 'assets/BookRoomV4ImageTest2.glb'
+const asset13 = 'assets/BookRoomV13\(Optimized\).glb'
 const sound1 = 'assets/frog_in_the_tunnel_MASTR004_intro.ogg';
 
 var modelroot;
 const assets = {
 	props: {
-		url: asset3,
+		url: asset13,
 		type: 'GLTF',
 		callback: (gltf) => {
 			console.log("loaded: ", gltf);
@@ -47,11 +48,11 @@ class ExampleSystem extends GameSystem {
 			.add(new SphereCollider(1, false, pmat))
 			.add(
 				new Mesh(
-					new SphereGeometry(1, 32, 32),
+					new SphereGeometry(0.2, 32, 32),
 					new MeshStandardMaterial({ color: 0xff0000 }),
 				),
 			);
-		sphere.position.set(0, 5, 0);
+		sphere.position.set(0, 50, 0);
 		sphere.updateTransform();
 		sphere.colliderVisible = true;
 		this.scene.add(sphere);
@@ -97,7 +98,7 @@ initEngine(
 	// XXX world.scene.add(assets);
 	// world.scene.add(new THREE.AmbientLight(0xffffff, 0.5));
 	const gltfLoader = new GLTFLoader();
-  	const url1 = asset4;
+  	const url1 = asset13;
 	gltfLoader.load(url1, (gltf) => {
 		modelroot = gltf.scene;
 
