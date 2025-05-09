@@ -28,12 +28,13 @@ const asset4 = 'assets/scene.gltf';
 const asset3 = 'assets/scene.gltf';
 const asset5 = 'assets/BookRoomV4ImageTest2.glb'
 const asset13 = 'assets/BookRoomV13\(Optimized\).glb'
+const asset14 = 'assets/BookRoomV13.2\(SmallAdjs\).glb'
 const sound1 = 'assets/frog_in_the_tunnel_MASTR004_intro.ogg';
 
 var modelroot;
 const assets = {
 	props: {
-		url: asset13,
+		url: asset14,
 		type: 'GLTF',
 		callback: (gltf) => {
 			console.log("loaded: ", gltf);
