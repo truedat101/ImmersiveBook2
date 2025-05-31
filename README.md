@@ -118,6 +118,7 @@ TODO
 ## Related Work
 
 - BookXRms from MIT Reality Hack 2025:  https://devpost.com/software/bookxrms
+- Augmented Reading Lens: https://www.designboom.com/technology/snapchat-ar-glasses-lenses-visuals-sounds-book-reading-spectacles-05-29-2025/
 
 ## License
 MIT/X
